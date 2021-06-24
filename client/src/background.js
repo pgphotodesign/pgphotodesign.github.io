@@ -43,7 +43,7 @@ class AnimationApp extends React.Component {
     {
       this.setState.call(this, {gradient: this.props.gradients[Math.floor(Math.random() * this.props.gradients.length)]})
       this.changeGradient.call(this)
-  }, 2000)
+  }, 60000)
   }
   render() {
     return (
