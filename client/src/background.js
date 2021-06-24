@@ -33,7 +33,7 @@ class AnimationApp extends React.Component {
     super(props)
     let location = this.props.location;
     this.state = {
-      gradient: this.props.gradients[0]
+      gradient: this.props.gradients[Math.floor(Math.random() * this.props.gradients.length)]
     }
     this.changeGradient()
   }
