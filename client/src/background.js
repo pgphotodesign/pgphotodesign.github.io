@@ -34,28 +34,24 @@ function AnimationApp() {
   return (
     <div style={styles.fill}>
       <ul style={styles.nav}>
-        <NavLink to="/hsl/10/90/50">Red</NavLink>
-        <NavLink to="/hsl/120/100/40">Green</NavLink>
-        <NavLink to="/rgb/33/150/243">Blue</NavLink>
-        <NavLink to="/rgb/240/98/146">Pink</NavLink>
+        <NavLink to="/gradient2/C1EBE1/93B4AC/45">1</NavLink>
+        <NavLink to="/gradient3/85C9C8/D4FEE6/E5FDC9/135">2</NavLink>
+        <NavLink to="/gradient4/FA715F/FA715F/DB1174/9B4CA7/45">3</NavLink>
+        <NavLink to="/gradient2/556270/C44D58/5">4</NavLink>
+        <NavLink to="/gradient2/036564/033649/5">5</NavLink>
       </ul>
 
       <div style={styles.content}>
         <TransitionGroup>
-          {/*
-            This is no different than other usage of
-            <CSSTransition>, just make sure to pass
-            `location` to `Switch` so it can match
-            the old location as it animates out.
-          */}
           <CSSTransition
             key={location.key}
             classNames="fade"
             timeout={300}
           >
             <Switch location={location}>
-              <Route path="/hsl/:h/:s/:l" children={<HSL />} />
-              <Route path="/rgb/:r/:g/:b" children={<RGB />} />
+              <Route path="/gradient2/:g1/:g2/:angle" children={<Gradient2 />} />
+              <Route path="/gradient3/:g1/:g2/:g3/:angle" children={<Gradient3 />} />
+              <Route path="/gradient4/:g1/:g2/:g3/:g4/:angle" children={() => <Gradient4 isAuthed={true}/>} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
@@ -72,34 +68,45 @@ function NavLink(props) {
   );
 }
 
-function HSL() {
-  let { h, s, l } = useParams();
+
+function Gradient2() {
+  let { g1, g2, angle } = useParams();
 
   return (
     <div
       style={{
         ...styles.fill,
-        ...styles.hsl,
-        background: `hsl(${h}, ${s}%, ${l}%)`
+        backgroundImage: `linear-gradient(${angle}deg, #${g1}, #${g2})`
       }}
     >
-      hsl({h}, {s}%, {l}%)
     </div>
   );
 }
 
-function RGB() {
-  let { r, g, b } = useParams();
+function Gradient3() {
+  let { g1, g2, g3, angle } = useParams();
 
   return (
     <div
       style={{
         ...styles.fill,
-        ...styles.rgb,
-        background: `rgb(${r}, ${g}, ${b})`
+        backgroundImage: `linear-gradient(${angle}deg, #${g1}, #${g2},  #${g3})`
       }}
     >
-      rgb({r}, {g}, {b})
+    </div>
+  );
+}
+
+function Gradient4() {
+  let { g1, g2, g3, g4, angle } = useParams();
+
+  return (
+    <div
+      style={{
+        ...styles.fill,
+        backgroundImage: `linear-gradient(${angle}deg, #${g1}, #${g2},  #${g3}, #${g4})`
+      }}
+    >
     </div>
   );
 }
@@ -135,18 +142,4 @@ styles.navItem = {
   flex: 1,
   listStyleType: "none",
   padding: "10px"
-};
-
-styles.hsl = {
-  ...styles.fill,
-  color: "white",
-  paddingTop: "20px",
-  fontSize: "30px"
-};
-
-styles.rgb = {
-  ...styles.fill,
-  color: "white",
-  paddingTop: "20px",
-  fontSize: "30px"
 };
