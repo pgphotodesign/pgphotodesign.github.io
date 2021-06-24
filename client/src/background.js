@@ -75,7 +75,7 @@ function Gradient(props) {
     <div
       style={{
         ...styles.fill,
-        backgroundImage: `linear-gradient(${props.gradient.angle}deg, ${props.gradient.colors})`
+        backgroundImage: `linear-gradient(${props.gradient.angle}, ${props.gradient.colors})`
       }}
     >
     </div>
