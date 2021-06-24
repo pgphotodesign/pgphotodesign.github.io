@@ -12,7 +12,8 @@ import {
   useLocation,
   useParams
 } from "react-router-dom";
-import BaseGradients from './gradients';
+import BaseGradients from '../../config/gradients';
+import Constants from '../../config/constants';
 
 export default class AnimationExample extends React.Component {
 
@@ -62,23 +63,30 @@ class AnimationApp extends React.Component {
     );
   }
 }
-
-function NavLink(props) {
-  return (
-    <li style={styles.navItem}>
-      <Link {...props} style={{ color: "inherit" }} />
-    </li>
-  );
-}
-
 function Gradient(props) {
   return (
     <div
       style={{
         ...styles.fill,
-        backgroundImage: `linear-gradient(${props.gradient.angle}, ${props.gradient.colors})`
+        backgroundImage: `linear-gradient(${props.gradient.angle}, ${props.gradient.colors})`,
+        display: 'flex',
+        margin: 'auto',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden'
       }}
     >
+      <img src='./grain.png' style={{
+        mixBlendMode: 'overlay',
+        position: 'absolute',
+        maxWidth: '100%',
+        overflow: 'hidden'
+      }}></img>
+      <img src='./logo.png' style={
+        {
+          maxWidth: Constants.logoSize,
+        }
+        }></img>
     </div>
   );
 }
