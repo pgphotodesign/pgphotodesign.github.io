@@ -12,6 +12,7 @@ import {
   useLocation,
   useParams
 } from "react-router-dom";
+import BaseGradients from './gradients';
 
 export default class AnimationExample extends React.Component {
 
@@ -20,7 +21,7 @@ export default class AnimationExample extends React.Component {
   }
   render() {
     return (
-      <AnimationApp gradients = {[{angle: 45, colors: '#C1EBE1, #93B4AC' }, {angle: 5, colors: '#556270, #C44D58' }, {angle: 5, colors: '#556270, #C44D58' }]} />
+      <AnimationApp gradients = {BaseGradients} />
 
     );
   }
