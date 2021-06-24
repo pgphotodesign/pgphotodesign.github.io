@@ -20,7 +20,7 @@ export default class AnimationExample extends React.Component {
   }
   render() {
     return (
-      <AnimationApp gradients = {[{angle: 45, colors: '#C1EBE1, #93B4AC' }, {angle: 5, colors: '#556270, #C44D58' }]} />
+      <AnimationApp gradients = {[{angle: 45, colors: '#C1EBE1, #93B4AC' }, {angle: 5, colors: '#556270, #C44D58' }, {angle: 5, colors: '#556270, #C44D58' }]} />
 
     );
   }
@@ -33,16 +33,23 @@ class AnimationApp extends React.Component {
     this.state = {
       gradient: this.props.gradients[0]
     }
-    setTimeout(() => this.setState({gradient: this.props.gradients[1]}), 2000)
+    this.changeGradient()
+  }
+
+  changeGradient() {
+    setTimeout(() =>
+    {
+      this.setState.call(this, {gradient: this.props.gradients[Math.floor(Math.random() * this.props.gradients.length)]})
+      this.changeGradient.call(this)
+  }, 2000)
   }
   render() {
-
     return (
       <div style={styles.fill}>
         <div style={styles.content}>
           <TransitionGroup>
             <CSSTransition
-              key={this.state.gradient}
+              key={this.state.gradient.angle}
               classNames="fade"
               timeout={300}
             >
