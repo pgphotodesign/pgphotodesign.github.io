@@ -33,7 +33,8 @@ class AnimationApp extends React.Component {
     super(props)
     let location = this.props.location;
     this.state = {
-      gradient: this.props.gradients[Math.floor(Math.random() * this.props.gradients.length)]
+      // gradient: this.props.gradients[Math.floor(Math.random() * this.props.gradients.length)]
+      gradient: this.props.gradients[9]
     }
     this.changeGradient()
   }
@@ -43,7 +44,7 @@ class AnimationApp extends React.Component {
     {
       this.setState.call(this, {gradient: this.props.gradients[Math.floor(Math.random() * this.props.gradients.length)]})
       this.changeGradient.call(this)
-  }, 100000)
+  }, 2000)
   }
   render() {
     return (
@@ -83,10 +84,11 @@ function Gradient(props) {
         overflow: 'hidden'
       }}></img>
 
-    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 1200 800">
+    <svg width={Constants.logoSize} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
     <defs>
         <linearGradient id="MyGradient">
           {props.gradient.logoColors.map((color, index, allColors) => {
+            console.log(props.gradient)
             var percentage = Math.round(index / (allColors.length - 1)) * 100;
             return(
               <stop offset={`${percentage}%`} stop-color={color} />
@@ -94,7 +96,7 @@ function Gradient(props) {
           })}
         </linearGradient>
       </defs>
-      <path id="icon" d={LogoPath}/>
+      <path id="icon" d={LogoPath} shape-rendering="optimizeQuality"/>
       </svg>
     </div>
   );
