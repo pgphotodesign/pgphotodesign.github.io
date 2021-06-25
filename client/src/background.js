@@ -34,17 +34,19 @@ class AnimationApp extends React.Component {
     let location = this.props.location;
     this.state = {
       // gradient: this.props.gradients[Math.floor(Math.random() * this.props.gradients.length)]
-      gradient: this.props.gradients[9]
+      gradient: this.props.gradients[9],
+      counter: 0
     }
-    this.changeGradient()
+    this.changeGradient(1)
   }
 
-  changeGradient() {
+  changeGradient(counter) {
+    var counter = counter === 0 ? 1 : 0;
     setTimeout(() =>
     {
-      this.setState.call(this, {gradient: this.props.gradients[Math.floor(Math.random() * this.props.gradients.length)]})
-      this.changeGradient.call(this)
-  }, 2000)
+      this.setState.call(this, {counter, previousGradient: this.state.gradient, gradient: this.props.gradients[Math.floor(Math.random() * this.props.gradients.length)]})
+      this.changeGradient.call(this, counter)
+  }, 4000)
   }
   render() {
     return (
@@ -54,9 +56,9 @@ class AnimationApp extends React.Component {
             <CSSTransition
               key={this.state.gradient.angle}
               classNames="fade"
-              timeout={300}
+              timeout={2000}
             >
-              <Gradient gradient={this.state.gradient}/>
+              <Gradient gradient={this.state}/>
             </CSSTransition>
           </TransitionGroup>
         </div>
@@ -69,7 +71,7 @@ function Gradient(props) {
     <div
       style={{
         ...styles.fill,
-        backgroundImage: `linear-gradient(${props.gradient.angle}, ${props.gradient.colors})`,
+        backgroundImage: `linear-gradient(${props.gradient.gradient.angle}, ${props.gradient.gradient.colors})`,
         display: 'flex',
         margin: 'auto',
         alignItems: 'center',
@@ -86,9 +88,8 @@ function Gradient(props) {
 
     <svg width={Constants.logoSize} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
     <defs>
-        <linearGradient id="MyGradient">
-          {props.gradient.logoColors.map((color, index, allColors) => {
-            console.log(props.gradient)
+        <linearGradient id={`MyGradient${props.gradient.counter}`}>
+          {props.gradient.gradient.logoColors.map((color, index, allColors) => {
             var percentage = Math.round(index / (allColors.length - 1)) * 100;
             return(
               <stop offset={`${percentage}%`} stop-color={color} />
@@ -96,7 +97,7 @@ function Gradient(props) {
           })}
         </linearGradient>
       </defs>
-      <path id="icon" d={LogoPath} shape-rendering="optimizeQuality"/>
+      <path style={{fill: `url(#MyGradient${props.gradient.counter})`}} d={LogoPath} shape-rendering="optimizeQuality"/>
       </svg>
     </div>
   );
