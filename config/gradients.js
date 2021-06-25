@@ -50,6 +50,31 @@ const gradients =
     colors: '#649173, #dbd5a4',
     logoColors: ['#e6e6e6']
   },
+  {
+    angle: 'to right',
+    colors: '#6A0433, #800940',
+    logoColors: ['#906C20', '#D6B264']
+  },
+  {
+    angle: 'to right',
+    colors: '#0D1A50, #1A2968',
+    logoColors: ['#906C20', '#D6B264']
+  },
+  {
+    angle: 'to right',
+    colors: '#282727, #3C3C3C',
+    logoColors: ['#906C20', '#D6B264']
+  },
+  {
+    angle: 'to right',
+    colors: '#282727, #3C3C3C',
+    logoColors: ['#9E9E9E', '#ABAAAA']
+  },
+  {
+    angle: 'to right',
+    colors: '#282727, #3C3C3C',
+    logoColors: ['#0075A7', '#C2DAF1']
+  },
 ];
 
 export default gradients;
