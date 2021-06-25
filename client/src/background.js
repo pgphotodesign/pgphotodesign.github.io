@@ -43,7 +43,7 @@ class AnimationApp extends React.Component {
     {
       this.setState.call(this, {gradient: this.props.gradients[Math.floor(Math.random() * this.props.gradients.length)]})
       this.changeGradient.call(this)
-  }, 1000)
+  }, 100000)
   }
   render() {
     return (
@@ -86,8 +86,12 @@ function Gradient(props) {
     <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 1200 800">
     <defs>
         <linearGradient id="MyGradient">
-          <stop offset="5%" stop-color="#F60" />
-          <stop offset="95%" stop-color="#FF6" />
+          {props.gradient.logoColors.map((color, index, allColors) => {
+            var percentage = Math.round(index / (allColors.length - 1)) * 100;
+            return(
+              <stop offset={`${percentage}%`} stop-color={color} />
+            )
+          })}
         </linearGradient>
       </defs>
       <path id="icon" d={LogoPath}/>
