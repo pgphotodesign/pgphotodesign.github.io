@@ -7,3 +7,9 @@
   opacity: 1;
   transition: opacity 250ms ease-in;
 }
+
+#icon {
+  cursor: pointer;
+  shape-rendering: crispEdges;
+  fill: url(#MyGradient);
+}

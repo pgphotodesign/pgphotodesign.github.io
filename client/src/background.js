@@ -14,7 +14,7 @@ import {
 } from "react-router-dom";
 import BaseGradients from '../../config/gradients';
 import Constants from '../../config/constants';
-
+import LogoPath from '../../config/logoPath'
 export default class AnimationExample extends React.Component {
 
   constructor(props) {
@@ -43,7 +43,7 @@ class AnimationApp extends React.Component {
     {
       this.setState.call(this, {gradient: this.props.gradients[Math.floor(Math.random() * this.props.gradients.length)]})
       this.changeGradient.call(this)
-  }, 60000)
+  }, 1000)
   }
   render() {
     return (
@@ -82,11 +82,16 @@ function Gradient(props) {
         maxWidth: '100%',
         overflow: 'hidden'
       }}></img>
-      <img src='./logo.png' style={
-        {
-          maxWidth: Constants.logoSize,
-        }
-        }></img>
+
+    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 1200 800">
+    <defs>
+        <linearGradient id="MyGradient">
+          <stop offset="5%" stop-color="#F60" />
+          <stop offset="95%" stop-color="#FF6" />
+        </linearGradient>
+      </defs>
+      <path id="icon" d={LogoPath}/>
+      </svg>
     </div>
   );
 }
