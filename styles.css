@@ -5,7 +5,19 @@
 
 .fade-enter.fade-enter-active {
   opacity: 1;
-  transition: opacity 2000ms ease-in;
+  transition: opacity 2000ms;
+  z-index: 1;
+}
+
+.fade-exit {
+  opacity: 1;
+  z-index: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 2000ms;
+  z-index: 1;
 }
 
 #icon {
